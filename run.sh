@@ -16,17 +16,28 @@ if [ "$1" == "-help" ]; then
 fi
 
 # process arguments, create nochat option and save as variable, create videoid argument
-nochat=false
-videoid=""
-for arg in "$@"; do
-    if [ "$arg" == "-nochat" ]; then
-        nochat=true
-    elif [ "$arg" == "-videoid" ]; then
-        videoid=$arg
-    else
-        echo "Invalid argument: $arg"
-        exit 1
-    fi
+POSITIONAL_ARGS=()
+
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -v|--videoid)
+      videoid="$2"
+      shift # past argument
+      shift # past value
+      ;;
+    --nochat)
+      nochat=true
+      shift # past argument
+      ;;
+    -*|--*)
+      echo "Unknown option $1"
+      exit 1
+      ;;
+    *)
+      POSITIONAL_ARGS+=("$1") # save positional arg
+      shift # past argument
+      ;;
+  esac
 done
 
 # check if videoid is empty
