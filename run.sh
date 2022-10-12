@@ -17,6 +17,8 @@ fi
 
 # process arguments, create nochat option and save as variable, create videoid argument
 POSITIONAL_ARGS=()
+videoid=""
+nochat=false
 
 while [[ $# -gt 0 ]]; do
   case $1 in
