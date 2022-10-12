@@ -51,7 +51,7 @@ echo SEPARATOR
 echo "Downloading video..."
 echo SEPARATOR
 
-TwitchDownloaderCLI -m VideoDownload --id $videoid --ffmpeg-path /usr/local/bin/ffmpeg -o $OUTPUT_DIR/$videoid.mp4
+./TwitchDownloaderCLI -m VideoDownload --id $videoid --ffmpeg-path /usr/local/bin/ffmpeg -o $OUTPUT_DIR/$videoid.mp4
 
 if [ "$nochat" == false ]; then
     echo SEPARATOR
