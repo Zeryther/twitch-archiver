@@ -16,4 +16,5 @@ RUN rm TwitchDownloaderCLI-Linux-x64.zip
 RUN chmod +x TwitchDownloaderCLI
 
 # command
-ENTRYPOINT ["/bin/bash", "-c", "run.sh"]
+ENTRYPOINT ["./run.sh"]
+CMD ["-help"]
