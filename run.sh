@@ -58,7 +58,12 @@ if [ "$nochat" == false ]; then
     echo "Downloading chat..."
     echo SEPARATOR
 
-    TwitchDownloaderCLI -m ChatDownload --id $videoid -o $OUTPUT_DIR/$videoid_chat.json
-    TwitchDownloaderCLI -m ChatRender -i $OUTPUT_DIR/$videoid_chat.json -h 1080 -w 422 --framerate 30 --update-rate 0 --font-size 18 -o $OUTPUT_DIR/$videoid_chat.mp4
+    ./TwitchDownloaderCLI -m ChatDownload --id $videoid -o $OUTPUT_DIR/$videoid_chat.json
+    ./TwitchDownloaderCLI -m ChatRender -i $OUTPUT_DIR/$videoid_chat.json -h 1080 -w 422 --framerate 30 --update-rate 0 --font-size 18 -o $OUTPUT_DIR/$videoid_chat.mp4
     ffmpeg -i $OUTPUT_DIR/$videoid.mp4 -i $OUTPUT_DIR/$videoid_chat.mp4 -filter_complex "[0:v]scale=1498:-1,pad=1498:1080:0:120:black[first];[first][1:v]hstack[stack]" -r 60 -map "[stack]" -map 0:a $OUTPUT_DIR/$videoid_combine.mp4
+
+    # Cleanup
+    rm $OUTPUT_DIR/$videoid.mp4
+    rm $OUTPUT_DIR/$videoid_chat.mp4
+    rm $OUTPUT_DIR/$videoid_chat.json
 fi
