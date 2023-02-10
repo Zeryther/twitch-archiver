@@ -1,9 +1,14 @@
 #!/bin/bash
 
 SEPARATOR="------------------------------------------------------------"
+EXECUTABLE="$(pwd)/TwitchDownloaderCLI"
 
 OUTPUT_DIR=$(pwd)/output
 mkdir -p $OUTPUT_DIR
+
+ls -la
+ls -la $OUTPUT_DIR
+ls -la $EXECUTABLE
 
 # create -help option
 if [ "$1" == "-help" ]; then
@@ -53,20 +58,20 @@ echo $SEPARATOR
 echo "Downloading video..."
 echo $SEPARATOR
 
-./TwitchDownloaderCLI -m VideoDownload --id $videoid -o $OUTPUT_DIR/$videoid.mp4
+$EXECUTABLE -m VideoDownload --id $videoid -o $OUTPUT_DIR/$videoid.mp4
 
 if [ "$nochat" == false ]; then
     echo $SEPARATOR
     echo "Downloading chat..."
     echo $SEPARATOR
 
-    ./TwitchDownloaderCLI -m ChatDownload --id $videoid -o $OUTPUT_DIR/${videoid}_chat.json
+    $EXECUTABLE -m ChatDownload --id $videoid -o $OUTPUT_DIR/${videoid}_chat.json
 
     echo $SEPARATOR
     echo "Rendering chat..."
     echo $SEPARATOR
 
-    ./TwitchDownloaderCLI -m ChatRender -i $OUTPUT_DIR/${videoid}_chat.json -h 1080 -w 422 --framerate 30 --update-rate 0 --font-size 18 -o $OUTPUT_DIR/${videoid}_chat.mp4
+    $EXECUTABLE -m ChatRender -i $OUTPUT_DIR/${videoid}_chat.json -h 1080 -w 422 --framerate 30 --update-rate 0 --font-size 18 -o $OUTPUT_DIR/${videoid}_chat.mp4
 
     echo $SEPARATOR
     echo "Combining chat and video..."
