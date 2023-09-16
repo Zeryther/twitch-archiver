@@ -6,9 +6,9 @@ WORKDIR /home
 RUN apt-get update && apt-get install -y wget unzip libicu-dev ffmpeg dos2unix
 
 # get TwitchDownloaderCLI from github
-RUN wget https://github.com/lay295/TwitchDownloader/releases/download/1.53.0/TwitchDownloaderCLI-1.53.0-Linux-x64.zip
-RUN unzip TwitchDownloaderCLI-1.53.0-Linux-x64.zip
-RUN rm TwitchDownloaderCLI-1.53.0-Linux-x64.zip
+RUN wget https://github.com/lay295/TwitchDownloader/releases/download/1.53.2/TwitchDownloaderCLI-1.53.2-Linux-x64.zip
+RUN unzip TwitchDownloaderCLI-1.53.2-Linux-x64.zip
+RUN rm TwitchDownloaderCLI-1.53.2-Linux-x64.zip
 RUN chmod +x TwitchDownloaderCLI
 
 # copy script
